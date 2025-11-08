@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>جمالك مع SHEIN</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #fff;
+      color: #111;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      color: #000;
+      font-size: 1.8em;
+    }
+    section p {
+      max-width: 600px;
+      margin: 10px auto;
+      color: #555;
+    }
+    .product {
+      margin: 20px auto;
+      max-width: 300px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.8s ease;
+    }
+    .product.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 25px;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #e0529b;
+    }
+    footer {
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      background-color: #ff69b4;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+    #scrollTopBtn:hover {
+      background-color: #e0529b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>جمالك مع SHEIN</h1>
+    <p>مرحبًا بكِ في عالم الجمال مع SHEIN 💕 اكتشفي أحدث أدوات التجميل والعناية التي تمنحكِ إشراقة وتألقًا كل يوم!</p>
+  </header>
+
+  <section id="face-care">
+    <h2>🧖‍♀️ أدوات العناية بالوجه</h2>
+    <p>دللي بشرتك مع أحدث أدوات العناية بالوجه من SHEIN.</p>
+    <div class="product">
+      <img src="images/placeholder.jpg" alt="منتج الوجه" />
+      <a href="#" class="btn">تسوقي الآن</a>
+    </div>
+  </section>
+
+  <section id="lipstick">
+    <h2>💄 أحمر الشفاه</h2>
+    <p>ألوان ساحرة تدوم طويلًا وتزيد من أناقتكِ.</p>
+    <div class="product">
+      <img src="images/placeholder.jpg" alt="أحمر الشفاه" />
+      <a href="#" class="btn">تسوقي الآن</a>
+    </div>
+  </section>
+
+  <section id="nails">
+    <h2>💅 العناية بالأظافر</h2>
+    <p>مجموعة رائعة لأظافر متألقة وإطلالة مثالية.</p>
+    <div class="product">
+      <img src="images/placeholder.jpg" alt="منتجات الأظافر" />
+      <a href="#" class="btn">تسوقي الآن</a>
+    </div>
+  </section>
+
+  <section id="accessories">
+    <h2>💍 إكسسوارات التجميل</h2>
+    <p>تفاصيل صغيرة تصنع الفرق، اكتشفي أروع إكسسوارات التجميل.</p>
+    <div class="product">
+      <img src="images/placeholder.jpg" alt="إكسسوارات التجميل" />
+      <a href="#" class="btn">تسوقي الآن</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>✨ تألقي كل يوم مع منتجات SHEIN الأصلية — اكتشفي المزيد من العروض الآن 💖</p>
+    <p>© 2025 جمالك مع SHEIN | dibeh.vip</p>
+  </footer>
+
+  <button id="scrollTopBtn" onclick="scrollToTop()">⬆ أعلى الصفحة</button>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const products = document.querySelectorAll('.product');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          const product = entry.target.querySelector('.product');
+          if(product){ setTimeout(() => { product.classList.add('visible'); }, 200); }
+        }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => { observer.observe(section); });
+
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = function() {
+      if(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300){
+        scrollTopBtn.style.display = 'block';
+      } else { scrollTopBtn.style.display = 'none'; }
+    };
+    function scrollToTop(){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  </script>
+</body>
+</html>
